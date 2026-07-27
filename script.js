@@ -176,15 +176,16 @@
   audio.addEventListener('play', function(){ playerEl.classList.add('playing'); syncUI(); });
   audio.addEventListener('pause', function(){ playerEl.classList.remove('playing'); syncUI(); });
 
-  playBtn.addEventListener('click', function(){
+    playBtn.addEventListener('click', function(){
     if (!hasSource) { audioInput.click(); return; }
-    if (audio.paused) { playSmooth(); } else { pauseSmooth(); }
-  });
-  seekTrack.addEventListener('click', function(e){
-    if (!audio.duration) return;
-    var r = seekTrack.getBoundingClientRect();
-    audio.currentTime = ((e.clientX - r.left) / r.width) * audio.duration;
-    syncUI();
+    
+    if (audio.paused) { 
+      audio.volume = 1;
+      audio.play().catch(function(e){ console.log("Browser mencegah autoplay", e); });
+    } else { 
+      audio.pause(); 
+    }
+    syncUI(); // Paksa UI tombol update seketika agar tidak nge-bug
   });
   uploadChip.addEventListener('click', function(){ audioInput.click(); });
   audioInput.addEventListener('change', function(){
