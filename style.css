@@ -426,9 +426,11 @@ h2 .tag .pi{animation:wiggle 3.4s ease-in-out infinite;transform-origin:50% 60%}
   .reveal{opacity:1;transform:none}
   .hero .subtitle{opacity:1}
 }
-
-/* FIX: Mengizinkan foto di-download/save saat ditahan di HP */
+/* FIX: Mematikan interaksi foto agar tidak bisa di-download, disalin, atau ditekan */
+.photo-slot,
 .photo-slot img {
-  -webkit-touch-callout: default !important;
-  pointer-events: auto !important;
+  pointer-events: none !important;
+  -webkit-touch-callout: none !important;
+  -webkit-user-select: none !important;
+  user-select: none !important;
 }
