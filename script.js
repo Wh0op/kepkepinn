@@ -236,41 +236,12 @@
     if (hasSource) playSmooth();
   });
 
-    /* ---- photo placeholder ---- */
+      /* ---- photo placeholder ---- */
   var slot = document.getElementById('photoSlot');
   var photoInput = document.getElementById('photoInput');
-  var isLongPress = false;
-  var pressTimer;
-
-  // Deteksi jika user menahan gambar (long press) untuk mendownload
-  slot.addEventListener('touchstart', function(e) {
-    isLongPress = false;
-    pressTimer = setTimeout(function() {
-      isLongPress = true;
-    }, 450); // Jika ditahan lebih dari 450ms, anggap mau download
-  }, {passive: true});
-
-  slot.addEventListener('touchend', function(e) { clearTimeout(pressTimer); });
-  slot.addEventListener('touchmove', function(e) { clearTimeout(pressTimer); });
-
-  function pickPhoto(e){ 
-    // Jika ditahan (mau download), JANGAN buka menu ganti foto
-    if (isLongPress) return; 
-    photoInput.click(); 
-  }
   
-  slot.addEventListener('click', pickPhoto);
-  slot.addEventListener('keydown', function(e){ if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); pickPhoto(); } });
-  
-  photoInput.addEventListener('change', function(){
-    var f = photoInput.files && photoInput.files[0];
-    if (!f) return;
-    var img = document.createElement('img');
-    img.alt = 'Foto kakak pembina';
-    img.src = URL.createObjectURL(f);
-    slot.innerHTML = '';
-    slot.appendChild(img);
-  });
+  // Semua fungsi klik dan upload dimatikan agar foto sepenuhnya statis.
+  // Tidak ada event listener yang berjalan di elemen ini.
   /* ---- tap for love ---- */
   var loveBtn = document.getElementById('loveBtn');
   var loveCount = document.getElementById('loveCount');
