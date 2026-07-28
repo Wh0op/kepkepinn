@@ -27,6 +27,16 @@ body{
   color:var(--ink);
   font-size:16px;
   line-height:1.6;
+  min-height:100vh;
+}
+
+/* FIX: Memindahkan background ke layer terpisah agar scroll di HP super smooth */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: -2;
+  pointer-events: none;
   background:
     radial-gradient(circle at 14px 18px,rgba(255,143,188,.4) 2px,transparent 2.6px),
     radial-gradient(circle at 58px 74px,rgba(169,139,214,.34) 2px,transparent 2.6px),
@@ -35,8 +45,6 @@ body{
     linear-gradient(90deg,rgba(227,212,255,0.35) 1px,transparent 1px),
     linear-gradient(160deg,#FFF2F8 0%,#F3ECFD 45%,#FFF0E6 80%,#EDFAF6 100%);
   background-size:112px 128px,132px 148px,156px 120px,28px 28px,28px 28px,cover;
-  background-attachment:fixed;
-  min-height:100vh;
 }
 .pixel{font-family:'Press Start 2P','Courier New',monospace;line-height:1.6}
 svg.pi{display:inline-block;width:1.1em;height:1.1em;vertical-align:-0.15em;shape-rendering:crispEdges}
