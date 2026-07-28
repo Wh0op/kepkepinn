@@ -132,7 +132,7 @@ body.pre-start .window,body.pre-start .player{opacity:0}
 .inner{padding:64px 52px 76px}
 section{margin-bottom:88px}
 section:last-of-type{margin-bottom:0}
-.reveal{opacity:0;transform:translateY(22px) scale(.92);transition:opacity .75s ease,transform .75s cubic-bezier(.34,1.56,.64,1)}
+.reveal{opacity:0;transform:translateY(22px) scale(.92);transition:opacity .75s ease,transform .75s cubic-bezier(.34,1.56,.64,1); will-change: transform, opacity;}
 .reveal.from-top{transform:translateY(-22px) scale(.96)}
 .reveal.visible{opacity:1;transform:none}
 
