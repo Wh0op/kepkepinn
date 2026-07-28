@@ -97,14 +97,26 @@
     reveals.forEach(function(el){ el.classList.add('visible'); });
   }
 
-  /* ---- scroll progress ---- */
+    /* ---- scroll progress ---- */
   var fill = document.getElementById('scrollFill');
+  var ticking = false; // FIX: Mencegah lag saat scroll
+  
   function updateProgress(){
     var h = document.documentElement;
     var max = h.scrollHeight - h.clientHeight;
     fill.style.width = (max > 0 ? (h.scrollTop / max) * 100 : 100) + '%';
   }
-  window.addEventListener('scroll', updateProgress, { passive: true });
+  
+  window.addEventListener('scroll', function() {
+    if (!ticking) {
+      window.requestAnimationFrame(function() {
+        updateProgress();
+        ticking = false;
+      });
+      ticking = true;
+    }
+  }, { passive: true });
+  
   updateProgress();
 
   /* ---- audio ---- */
